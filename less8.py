@@ -20,8 +20,6 @@ def get_query(city_id=None, country=None, url=None):
         g = Grab(log_file='grab.log')
         g.setup(timeout=30, connect_timeout=30)
         g.go(url)
-        row = g.response.body
-        #print(row)
         return g.response.body
     except Exception as e:
         pass
@@ -98,13 +96,10 @@ for row in work_with_bd('''select city from weather_data'''):
        answer1 = input('Do you want download weather new data? y/n ')
        if answer1 == 'y':
            city_id = work_with_bd('''select id_city from weather_data where city=?''', [answer])
-           #print('!!',city_id[0][0])
            weather_data = json.loads(get_query(city_id=city_id, url='http://api.openweathermap.org/data/2.5/weather?id={}&units=metric&appid={}'.format(city_id[0][0], get_appid())))
            temperature_city = weather_data['main']['temp']
-           #print(temperature_city)
            work_with_bd('update weather_data set temperature={} where id_city={}'.format(temperature_city, city_id[0][0]))
-           # download file weather_14.json.gz from url='http://bulk.openweathermap.ord/sample/'
-           # unzip file and update data in db
+
 
 
 
