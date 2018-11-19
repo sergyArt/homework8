@@ -74,6 +74,7 @@ def loads_bd(mass_id = None):
 
 
 
+
 print('Program weather in towns')
 if not os.path.isfile(file_cyties):
     print('Not found file with cyties')
