@@ -34,6 +34,7 @@ def work_with_bd(query,params=None):
 
 
 
+
 if len(sys.argv) >=3 and (sys.argv[1] in ('--csv', '--json', '--html') and len(sys.argv[2]) > 0):
     data_list = []
     data_list.append(('id_city', 'city', 'date_create', 'temperature', 'id_weather'))
